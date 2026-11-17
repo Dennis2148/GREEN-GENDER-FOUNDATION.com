@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Green Gender Foundation | Together We Bring Hope</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* --- Global Styles & Theme Colors --- */
+    :root {
+      --green: #0f9b4f; /* from logo */
+      --green-light: #1fba6b;
+      --blue: #0b3b8c; /* from logo */
+      --blue-light: #1f4fa8;
+      --dark: #1e2a3a;
+      --light-bg: #f9fbfd;
+      --white: #ffffff;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --radius: 18px;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      background: var(--light-bg);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    ul {
+      list-style: none;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .page {
+      display: none;
+    }
+    .page.active {
+      display: block;
+    }
+    /* --- Header / Nav --- */
+    header {
+      background: var(--white);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo img {
+      height: 120px;
+      width: auto;
+      border-radius: 8px;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .logo-text .title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--green);
+      text-transform: uppercase;
+    }
+    .logo-text .tagline {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--blue);
+      font-style: italic;
+    }
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+    }
+    nav ul li a {
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 8px 4px;
+      color: var(--dark);
+      transition: 0.2s;
+      border-bottom: 3px solid transparent;
+    }
+    nav ul li a:hover,
+    nav ul li a.active-link {
+      color: var(--green);
+      border-bottom-color: var(--green);
+    }
+
+    /* --- Nav Toggle (Hamburger) for small screens --- */
+    .nav-toggle {
+      display: none; /* hidden by default on desktop */
+      background: transparent;
+      border: none;
+      font-size: 1.9rem;
+      color: var(--blue);
+      cursor: pointer;
+      padding: 4px 10px;
+      transition: 0.2s;
+      line-height: 1;
+      border-radius: 8px;
+    }
+    .nav-toggle:hover {
+      color: var(--green);
+      background: rgba(15, 155, 79, 0.08);
+    }
+    /* Mobile nav styles */
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block; /* show hamburger */
+      }
+      nav {
+        width: 100%;
+        display: none; /* hide nav by default on mobile */
+        padding-top: 12px;
+        border-top: 1px solid #e4ecf5;
+        margin-top: 6px;
+      }
+      nav.open {
+        display: block;
+        animation: fadeSlide 0.25s ease;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 4px;
+        width: 100%;
+      }
+      nav ul li {
+        width: 100%;
+      }
+      nav ul li a {
+        display: block;
+        padding: 12px 8px;
+        border-bottom: 1px solid #eef4fa;
+        border-radius: 6px;
+      }
+      nav ul li a:hover,
+      nav ul li a.active-link {
+        background: #eef7f1;
+        border-bottom-color: transparent;
+      }
+      .header-inner {
+        flex-wrap: wrap;
+      }
+      .logo {
+        flex: 1;
+      }
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0.6; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- Buttons --- */
+    .btn {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: 0.25s;
+      font-size: 1rem;
+      box-shadow: 0 6px 16px rgba(15, 155, 79, 0.3);
+    }
+    .btn:hover {
+      background: var(--green-light);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 22px rgba(15, 155, 79, 0.35);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--green);
+      color: var(--green);
+      box-shadow: none;
+    }
+    .btn-outline:hover {
+      background: var(--green);
+      color: var(--white);
+    }
+    /* --- Hero --- */
+   .hero-image img {
+     height: 350px;
+     width: 500px;
+    }
+    .hero-content {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .hero-text {
+      flex: 1 1 400px;
+    }
+    .hero-text h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--blue);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .hero-text h1 span {
+      color: var(--green);
+    }
+    .hero-text p {
+      font-size: 1.15rem;
+      margin-bottom: 30px;
+      color: #2e3b4e;
+    }
+    .hero-image {
+      flex: 1 1 300px;
+      text-align: center;
+    }
+  
+    /* --- Section Styles --- */
+    section {
+      padding: 70px 0;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--blue);
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 5px;
+      background: var(--green);
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: #4a5a6e;
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+    /* --- Cards / Focus Areas --- */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      transition: 0.25s;
+      border-top: 5px solid var(--green);
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+    .card i {
+      font-size: 2.2rem;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: var(--blue);
+    }
+    .card p {
+      color: #3f4e61;
+      font-size: 0.98rem;
+    }
+    /* --- Flag Ship Initiatives --- */
+    .initiative-block {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 30px 32px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      border-left: 8px solid var(--blue);
+    }
+    .initiative-block h3 {
+      font-size: 1.8rem;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .initiative-block .badge {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 50px;
+      letter-spacing: 0.5px;
+      margin-bottom: 18px;
+    }
+    .initiative-block ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px 20px;
+      margin-top: 18px;
+    }
+    .initiative-block ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.98rem;
+    }
+    .initiative-block ul li i {
+      color: var(--green);
+      margin-top: 4px;
+      font-size: 0.9rem;
+    }
+    /* --- About Page --- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .about-img img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .values-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .value-item {
+      background: #eef7f1;
+      padding: 16px 20px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 600;
+    }
+    .value-item i {
+      color: var(--green);
+      font-size: 1.6rem;
+    }
+    /* --- Gallery --- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: var(--white);
+      transition: 0.3s;
+    }
+    .gallery-item:hover {
+      transform: scale(1.02);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-caption {
+      padding: 16px 18px;
+      font-weight: 600;
+      color: var(--blue);
+      background: var(--white);
+      font-size: 1rem;
+    }
+    /* --- Contact Page --- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+    }
+    .contact-info {
+      background: var(--white);
+      padding: 32px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .contact-info h3 {
+      font-size: 1.6rem;
+      color: var(--blue);
+      margin-bottom: 16px;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 24px 0;
+      font-size: 1.05rem;
+    }
+    .contact-detail i {
+      font-size: 1.4rem;
+      color: var(--green);
+      width: 30px;
+    }
+    .contact-form {
+      background: var(--white);
+      padding: 32px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .contact-form h3 {
+      font-size: 1.6rem;
+      color: var(--blue);
+      margin-bottom: 24px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--dark);
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #d0dae8;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: 0.2s;
+      background: #fafcff;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(15, 155, 79, 0.15);
+    }
+    .form-group textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+    .form-message {
+      margin-top: 16px;
+      font-weight: 600;
+    }
+    .form-message.success {
+      color: var(--green);
+    }
+    .form-message.error {
+      color: #d32f2f;
+    }
+    /* --- Footer --- */
+    footer {
+      background: var(--green);
+      color: #dfe8f5;
+      text-align: center;
+      padding: 40px 20px 30px;
+      margin-top: 40px;
+    }
+    footer .footer-logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    footer .footer-logo span {
+      color: #9be0b8;
+    }
+    footer p {
+      margin: 6px 0;
+      font-size: 0.95rem;
+    }
+    footer .social-icons {
+      margin: 18px 0 12px;
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      font-size: 1.4rem;
+    }
+    footer .social-icons a {
+      color: #dfe8f5;
+      transition: 0.2s;
+    }
+    footer .social-icons a:hover {
+      color: #9be0b8;
+    }
+    /* --- Responsive --- */
+    @media (max-width: 900px) {
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-text h1 {
+        font-size: 2.2rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .header-inner {
+        flex-direction: row;
+        align-items: center;
+      }
+      nav ul {
+        gap: 10px 14px;
+      }
+      .logo-text .title {
+        font-size: 1.2rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .hero-text h1 {
+        font-size: 1.9rem;
+      }
+    }
+    .about-image{
+      display: flex;
+    }
+    .about-image img{
+      height: 400px;
+      width: 400px;
+      margin-left: 20px;
+    }
+
+
+
+      /* MAIN WIDGET */
+.whatsapp-widget {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 99999;
+    font-family: Arial, sans-serif;
+}
+
+/* FLOATING BUTTON */
+.whatsapp-float {
+    position: relative;
+    width: 65px;
+    height: 65px;
+    border: none;
+    border-radius: 50%;
+    background: #25D366;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: 0.3s ease;
+}
+
+.whatsapp-float svg {
+    width: 35px;
+    height: 35px;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background: #128C7E;
+}
+
+/* NOTIFICATION DOT */
+.notification-dot {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 13px;
+    height: 13px;
+    background: #ff3838;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+/* POPUP WINDOW */
+.whatsapp-popup {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 340px;
+    max-width: calc(100vw - 40px);
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+    animation: whatsapp-open 0.25s ease;
+}
+
+.whatsapp-popup[hidden] {
+    display: none !important;
+}
+
+/* HEADER */
+.whatsapp-header {
+    background: #075E54;
+    color: white;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.business-avatar {
+    width: 45px;
+    height: 45px;
+    background: white;
+    color: #075E54;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.business-info {
+    flex: 1;
+}
+
+.business-info h3 {
+    margin: 0 0 5px;
+    font-size: 16px;
+}
+
+.business-info p {
+    margin: 0;
+    font-size: 11px;
+}
+
+.online-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #25D366;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+
+.close-chat {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* CHAT BODY */
+.whatsapp-body {
+    padding: 20px;
+    background: #ECE5DD;
+    min-height: 170px;
+}
+
+.welcome-message {
+    background: white;
+    padding: 14px;
+    border-radius: 10px;
+    width: 90%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.welcome-message p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #333;
+    margin: 8px 0;
+}
+
+.message-time {
+    font-size: 10px;
+    color: #888;
+}
+
+.chat-caption {
+    text-align: center;
+    font-size: 11px;
+    color: #777;
+    margin-top: 15px;
+}
+
+/* FOOTER */
+.whatsapp-footer {
+    padding: 15px;
+    background: white;
+}
+
+.whatsapp-footer a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 14px;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.whatsapp-footer a:hover {
+    background: #128C7E;
+}
+
+/* ANIMATION */
+@keyframes whatsapp-open {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 480px) {
+
+    .whatsapp-widget {
+        right: 15px;
+        bottom: 15px;
+    }
+
+    .whatsapp-float {
+        width: 58px;
+        height: 58px;
+    }
+
+    .whatsapp-popup {
+        width: calc(100vw - 30px);
+        right: -5px;
+        bottom: 72px;
+    }
+}
+
+
+
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header>
+  <div class="container header-inner">
+    <div class="logo">
+      <img src="Images/ggflogo.png" alt="Green Gender Foundation Logo" />
+      <div class="logo-text">
+        <span class="title">Green Gender</span>
+        <span class="title" style="font-size:1.2rem; color:var(--blue);">Foundation</span>
+        <span class="tagline">Together we bring hope</span>
+      </div>
+    </div>
+
+    <!-- Hamburger toggle button for small screens -->
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <nav id="mainNav">
+      <ul>
+        <li><a href="#" data-page="home" class="active-link">Home</a></li>
+        <li><a href="#" data-page="about">About</a></li>
+        <li><a href="#" data-page="what-we-do">What We Do</a></li>
+        <li><a href="#" data-page="gallery">Gallery</a></li>
+        <li><a href="#" data-page="contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ========== HOME PAGE ========== -->
+  <div id="home" class="page active">
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="hero-text">
+          <h1>Empowering <span>Girls</span> & <span>Boys</span> for a Brighter Tomorrow</h1>
+          <p>Green Gender Foundation is dedicated to ending period poverty, preventing early pregnancies, combating gender-based violence, and fostering climate resilience — together we bring hope.</p>
+          <a href="#" class="btn" data-page="what-we-do">Explore Our Work</a>
+          <a href="#" class="btn btn-outline" style="margin-left:12px;" data-page="contact">Get Involved</a>
+        </div>
+        <div class="hero-image">
+          <!-- Using a community/empowerment illustration -->
+         <img src="Images/img10 (2).jpg" alt="CEO Green Gender Foundation" />
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Our Key Focus Areas</h2>
+        <p class="section-subtitle">We tackle the most pressing challenges facing young people and women in our communities.</p>
+        <div class="cards-grid">
+          <div class="card">
+            <i class="fas fa-hand-holding-heart"></i>
+            <h3>Menstrual Health</h3>
+            <p>We fight period poverty by promoting menstrual health education, distributing sanitary products and supporting vulnerable girls to manage menstruation with dignity. We strive to ensure that no girl misses educational opportunities because of a lack of menstrual hygiene products.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Prevent Early Pregnancy</h3>
+            <p>We promote awareness, mentorship, life skills and informed decision-making among adolescents to prevent early pregnancies. We also support teenage mothers through mentorship, skills development and opportunities to rebuild their futures.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-balance-scale"></i>
+            <h3>GBV Prevention</h3>
+            <p>We advocate against gender-based violence affecting both boys and girls, as well as women. We promote awareness, prevention, protection, reporting and access to appropriate support services while encouraging communities to challenge harmful practices and discrimination.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-brain"></i>
+            <h3>Mental Wellness</h3>
+            <p>Promoting emotional resilience, safe spaces, and awareness of mental health challenges among youth and women.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-leaf"></i>
+            <h3>Climate Action and Environmental Sustainability</h3>
+            <p>We encourage women and young people to participate in environmental conservation, climate awareness and sustainable community practices, promoting climate resilience and environmental responsibility.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-hands-helping"></i>
+            <h3>Women and community Empowerment</h3>
+            <p>We support women and vulnerable households through capacity building, skills development, advocacy and economic empowerment initiatives aimed at improving livelihoods and strengthening community participation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: #f1f8f4;">
+      <div class="container">
+        <h2 class="section-title">Our Flagship Initiatives</h2>
+        <div class="initiative-block">
+          <h3>Teen Girl Initiative</h3>
+          <span class="badge">Empowering the Girl Child</span>
+          <p>Dedicated to addressing challenges affecting adolescent girls and young women in our communities.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Fighting period poverty<br>Through distribution of sanitary products.</li>
+            <li><i class="fas fa-check-circle"></i> Menstrual health education</li>
+            <li><i class="fas fa-check-circle"></i> Preventing early pregnancies</li>
+            <li><i class="fas fa-check-circle"></i> Supporting teenage mothers<br>Through mentorship, skills development and opportunities to rebuild their futures.</li>
+            <li><i class="fas fa-check-circle"></i> Promoting girls' education and school retention</li>
+            <li><i class="fas fa-check-circle"></i> Advocating against Gender-Based Violence (GBV)</li>
+            <li><i class="fas fa-check-circle"></i> Building confidence, self-esteem & leadership among girls</li>
+            <li><i class="fas fa-check-circle"></i> Providing Mentorship , life skills and personal development opportunities</li>
+
+          </ul>
+          <p>Our goal is to create a supportive environment that enables teenage girls to thrive academically, socially, and emotionally.</p>
+        </div>
+        <div class="initiative-block" style="border-left-color: var(--green);">
+          <h3>Boy Child Initiative</h3>
+          <span class="badge" style="background: var(--blue);">Empowering the Boy Child</span>
+          <p>The Boy Child Initiative is a programme being developed under Green Gender Foundation to address challenges affecting boys and adolescent young men in our communities.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Promoting positive masculinity and responsible manhood.</li>
+            <li><i class="fas fa-check-circle"></i> Providing mentorship and leadership development opportunities.</li>
+            <li><i class="fas fa-check-circle"></i> Creating awareness about mental health and emotional well-being.</li>
+            <li><i class="fas fa-check-circle"></i> Promoting responsible decision-making.</li>
+             
+
+             <li><i class="fas fa-check-circle"></i> preventing violence, abuse and harmful social practices.</li>
+              <li><i class="fas fa-check-circle"></i>Promoting gender equality and healthy relationships.</li>
+               <li><i class="fas fa-check-circle"></i>Providing safe spaces for boys to discuss challenges affecting their lives.</li>
+<li><i class="fas fa-check-circle"></i> supporting boys to identify their talents and develop their potential.
+</li>
+
+
+
+          </ul>
+          <p>Our goal is to raise responsible, confident, respectful and empowered boys who will become positive contributors to their families and communities.</p>
+        </div>
+        <b>OUR ACHIEVEMENTS AND EXPERIENCE</b><br>
+Green Gender Foundation has continued to make a difference through community-based empowerment and menstrual health initiatives.
+Some of our key activities include:
+<p>14th February 2023
+Supported over 60 teenage mothers with sanitary pads and baby receiving sets through a community empowerment initiative.<br>
+
+28th August 2025.Distributed sanitary pads to over 200 girls and conducted empowerment activities aimed at promoting menstrual health and girls' well-being.<br>
+
+14th February 2026
+Supported over 90 teenage girls with reusable and regular sanitary pads alongside empowerment and mentorship activities.<br>
+
+15th August 2026 – Kikao 2
+Organized a youth-focused community event at Kyaango Playground, Voo Kyamatu Ward, Kitui County, under the theme:
+Strong Minds, Bright Talents, Better Communities.
+The event brought together over 300 young people through football tournaments, talent showcases, mental health awareness and civic education.<br>
+
+15th August 2026
+
+ successfully hosted a youth empowerment event under the theme “Strong Minds, Bright Talents, Better Communities.”
+The event brought together over 300 young people, creating a safe and engaging space for youths to showcase their talents, learn about mental health, and participate in civic education.<br>
+ 
+
+
+
+These activities demonstrate our commitment to creating opportunities and addressing challenges affecting young people in our communities.</p>
+      </div>
+      
+    </section>
+
+  </div>
+
+  <!-- ========== ABOUT PAGE ========== -->
+  <div id="about" class="page">
+    <section>
+      <div class="container">
+        <h2 class="section-title">About Green Gender Foundation</h2>
+        <div class="about-image">
+        <p class="section-subtitle">Green Gender Foundation is a community driven foundation dedicated to empowering young people both boys and girls—and women to become confident, informed and active participants in their communities. We work alongside communities to address social, gender and environmental challenges that affect children, adolescents, young people and women, particularly those facing vulnerability or limited access to opportunities. Through community empowerment, mentorship, advocacy and climate action, we create spaces where people can build skills, understand their rights, access support and contribute to positive community change. We believe every child and young person deserves dignity, safety, equal opportunity and the chance to shape a better future regardless of gender or background.</p>
+             <img src="Images/Ceo green gender fountation.png">
+      </div>
+        
+        <div class="about-grid">
+          <div class="about-img">
+            <img src="Images/img11.jpg.jpg" alt="Green Gender Foundation seminar" />
+          </div>
+          <div>
+            <h3 style="font-size:1.8rem; color:var(--blue); margin-bottom:16px;">Our Story & Mission</h3>
+            <p>Green Gender Foundation was founded to create a world where every young person regardless of gender can thrive with dignity. We address root causes of inequality through education, mentorship, and community-led programs.</p>
+            <p style="margin-top:16px;">Our approach is holistic: we work with schools, local leaders, and families to ensure sustainable change. From providing sanitary products to championing climate action, we believe in empowering communities to build their own solutions.</p>
+           
+            <div class="values-list">
+              <div class="value-item"><i class="fas fa-heart"></i> Compassion</div>
+              <div class="value-item"><i class="fas fa-handshake"></i> Integrity</div>
+              <div class="value-item"><i class="fas fa-users"></i> Community</div>
+              <div class="value-item"><i class="fas fa-seedling"></i> Sustainability</div>
+            </div>
+            
+          </div>
+           
+        <b> OUR VISION:</b><BR><P>A climate resilient and gender responsive community where women and youth enjoy equal rights and opportunities and thrive in clean, healthy and sustainable environments.</P><br>
+           <b> OUR MISSION:</b><BR><P>To promote gender-sensitive climate action through collaborative community empowerment, mentorship and advocacy for sustainable development.</P>
+
+
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- ========== WHAT WE DO PAGE ========== -->
+  <div id="what-we-do" class="page">
+    <section>
+      <div class="container">
+        <h2 class="section-title">What We Do</h2>
+        <p class="section-subtitle">Our programs are designed to create lasting impact through direct support, education, and advocacy.</p>
+        <!-- Reuse focus areas and initiatives from home, but with more detail -->
+        <div class="cards-grid" style="margin-bottom:50px;">
+          <div class="card">
+            <i class="fas fa-hand-holding-heart"></i>
+            <h3>Menstrual Health & Period Poverty</h3>
+            <p>We distribute sanitary products and provide menstrual health education, ensuring no girl misses school due to lack of supplies.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Prevention of Early Pregnancy</h3>
+            <p>Mentorship, life skills, and informed decision-making for adolescents. We also support teenage mothers with skills and opportunities.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-balance-scale"></i>
+            <h3>GBV Prevention & Advocacy</h3>
+            <p>We advocate against gender-based violence affecting boys, girls, and women, promoting healthy relationships and safe communities.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-brain"></i>
+            <h3>Mental Wellness</h3>
+            <p>Promoting emotional resilience, safe spaces, and awareness of mental health challenges among young people and women.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-leaf"></i>
+            <h3>Climate Action</h3>
+            <p>Encouraging women and youth to participate in environmental conservation, climate awareness, and sustainable practices.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-hands-helping"></i>
+            <h3>Women & Community Empowerment</h3>
+            <p>Capacity building, skills development, and economic empowerment initiatives for women and vulnerable households.</p>
+          </div>
+        </div>
+        <h2 class="section-title" style="font-size:1.9rem;">Flagship Programmes</h2>
+        <div class="initiative-block">
+          <h3>Teen Girl Initiative</h3>
+          <span class="badge">Empowering the Girl Child</span>
+          <p>Our flagship programme addressing the unique challenges of adolescent girls and young women through a comprehensive approach.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Sanitary product support</li>
+            <li><i class="fas fa-check-circle"></i> Menstrual health education</li>
+            <li><i class="fas fa-check-circle"></i> Pregnancy prevention</li>
+            <li><i class="fas fa-check-circle"></i> Teenage mother support</li>
+            <li><i class="fas fa-check-circle"></i> Girls' education & retention</li>
+            <li><i class="fas fa-check-circle"></i> GBV advocacy</li>
+            <li><i class="fas fa-check-circle"></i> Confidence & leadership</li>
+            <li><i class="fas fa-check-circle"></i> Mentorship & life skills</li>
+          </ul>
+        </div>
+        <div class="initiative-block" style="border-left-color: var(--green);">
+          <h3>Boy Child Initiative</h3>
+          <span class="badge" style="background: var(--blue);">Coming Soon</span>
+          <p>A programme being developed to address challenges affecting boys and adolescent young men in our communities.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Positive masculinity</li>
+            <li><i class="fas fa-check-circle"></i> Responsible manhood</li>
+            <li><i class="fas fa-check-circle"></i> Mentorship & leadership</li>
+            <li><i class="fas fa-check-circle"></i> Life skills</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========== GALLERY PAGE ========== -->
+  <div id="gallery" class="page">
+    <section>
+      <div class="container">
+        <h2 class="section-title">Gallery</h2>
+        <p class="section-subtitle">Moments of impact, empowerment, and hope from our community programs.</p>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="Images/img2.jpg" alt="Menstrual Health education seminar" />
+            <div class="gallery-caption">Menstrual Health Education</div>
+          </div>
+          <div class="gallery-item">
+            <img src="Images/img9.jpg.jpg" alt="Youth Leadership Camp" />
+            <div class="gallery-caption">Youth Leadership Camp</div>
+          </div>
+          <div class="gallery-item">
+            <img src="Images/img7.jpg.jpg" alt="Women and Community Empowerment" />
+            <div class="gallery-caption">Women and Community Empowerment</div>
+          </div>
+          <div class="gallery-item">
+            <img src="Images/img3.jpg.jpg" alt="Sanitary Pad Distribution" />
+            <div class="gallery-caption">Sanitary Pad Distribution</div>
+          </div>
+          <div class="gallery-item">
+            <img src="Images/img6.jpg.jpg" alt="Sports and Talent Development" />
+            <div class="gallery-caption">Sports and Talent Development</div>
+          </div>
+          <div class="gallery-item">
+            <img src="Images/img1.jpg" alt="Mentoring boy child on positivity and masculinity" />
+            <div class="gallery-caption">Mentoring Boy Child</div>
+          </div>
+
+                <div class="gallery-item">
+            <img src="Images/img5.jpg.jpg" alt="Counselling and emotional support" />
+            <div class="gallery-caption">Counselling and Emotional Support</div>
+          </div>
+
+
+           <div class="gallery-item">
+            <img src="Images/img8.jpg.jpg" alt="Community Outreach" />
+            <div class="gallery-caption">Community Outreach</div>
+          </div>
+
+           <div class="gallery-item">
+            <img src="Images/img12.jpg.jpg" alt="Schools visit and career guidance" />
+            <div class="gallery-caption">Schools Visit and Career Guidance</div>
+          </div>
+
+
+           <div class="gallery-item">
+            <img src="Images/img7.jpg.jpg" alt="life skills development" />
+            <div class="gallery-caption">Life Skills Development in schools</div>
+          </div>
+
+           <div class="gallery-item">
+            <img src="Images/img11.jpg.jpg" alt="Drug and substance abuse awareness seminar" />
+            <div class="gallery-caption">Drug and Substance Abuse Awareness in schools</div>
+
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========== CONTACT PAGE ========== -->
+  <div id="contact" class="page">
+    <section>
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">We'd love to hear from you. Reach out for partnerships, volunteering, or any inquiries.</p>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Get in Touch</h3>
+            <div class="contact-detail">
+              <i class="fas fa-envelope"></i>
+              <span>Greengender370@gmail.com</span>
+            </div>
+            <div class="contact-detail">
+              <i class="fas fa-phone-alt"></i>
+              <span>+254 711 504006</span>
+            </div>
+            <div class="contact-detail">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Kitui County, Kenya</span>
+            </div>
+            
+            <p style="margin-top:30px; font-style:italic; color:#4a5a6e;">"Together we bring hope" — reach out and be part of the change.</p>
+          </div>
+          <div class="contact-form">
+            <h3>Send Us a Message</h3>
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Your name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" placeholder="How can we help?" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" placeholder="Write your message here..." required></textarea>
+              </div>
+              <button type="submit" class="btn" style="width:100%;">Send Message</button>
+              <div id="formMessage" class="form-message"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+
+<!-- WhatsApp Floating Widget -->
+<div class="whatsapp-widget">
+
+    <!-- Floating Button -->
+    <button class="whatsapp-float"
+            id="whatsapp-toggle"
+            aria-label="Open WhatsApp chat"
+            aria-expanded="false">
+
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+            <path fill="currentColor"
+                d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5
+                1.8 6.4L3 29l6.8-1.8c1.9 1 4 1.5
+                6.2 1.5 7.2 0 13-5.8 13-13S23.2 3 16 3z"/>
+            <path fill="#25D366"
+                d="M12 9.5c-.5 0-.9.2-1.2.7-.5.7-1.3
+                1.8-1.3 3.5 0 1.7 1.3 3.5 1.5 3.7.2.3
+                2.5 4 6.2 5.4 3.1 1.2 3.7.9 4.4.8.7
+               -.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8
+                -.1-.2-.4-.3-.8-.5l-2.6-1.2c-.4-.1-.7
+                -.2-1 .2-.3.4-1 1.2-1.3 1.5-.2.3-.5
+                .3-.9.1-.4-.2-1.8-.7-3.4-2.2-1.3
+                -1.1-2.2-2.5-2.4-2.9-.2-.4 0-.6.2-.8
+                .2-.2.4-.5.6-.7.2-.2.3-.4.4-.7.1
+                -.3 0-.5-.1-.7l-1.2-2.8c-.3-.7-.6
+                -.8-.9-.8z"/>
+        </svg>
+
+        <span class="notification-dot"></span>
+    </button>
+
+
+    <!-- Chat Popup -->
+    <div class="whatsapp-popup" id="whatsapp-popup" hidden>
+
+        <!-- Header -->
+        <div class="whatsapp-header">
+
+            <div class="business-avatar">W</div>
+
+            <div class="business-info">
+                <h3>Our Business</h3>
+                <p>
+                    <span class="online-dot"></span>
+                    Typically replies within minutes
+                </p>
+            </div>
+
+            <button class="close-chat"
+                    id="whatsapp-close"
+                    aria-label="Close chat">
+                &times;
+            </button>
+
+        </div>
+
+
+        <!-- Chat Body -->
+        <div class="whatsapp-body">
+
+            <div class="welcome-message">
+
+                <span class="message-time">Welcome</span>
+
+                <p>
+                    Hello! 👋 Welcome to our website.
+                    Thank you for visiting us.
+                </p>
+
+                <p>
+                    How can we assist you today?
+                    Feel free to send us a message.
+                </p>
+
+            </div>
+
+            <p class="chat-caption">
+                Our team is ready to assist you.
+            </p>
+
+        </div>
+
+
+        <!-- Footer -->
+        <div class="whatsapp-footer">
+
+            <a href="#"
+               id="whatsapp-link"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                <svg viewBox="0 0 32 32"
+                     width="22"
+                     height="22"
+                     aria-hidden="true">
+                    <path fill="currentColor"
+                    d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5
+                    1.8 6.4L3 29l6.8-1.8c1.9 1 4 1.5
+                    6.2 1.5 7.2 0 13-5.8 13-13S23.2 3 16 3z"/>
+                </svg>
+
+                Start a conversation
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<form
+  action="https://formspree.io/f/xjywyojp"
+  method="POST"
+>
+  <label>
+    Your email:
+    <input type="email" name="email">
+  </label>
+  <label>
+    Your message:
+    <textarea name="message"></textarea>
+  </label>
+  <!-- your other form fields go here -->
+  <button type="submit">Send</button>
+</form>
+
+
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">Green Gender <span>Foundation</span></div>
+    <p>Together we bring hope</p>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <p style="font-size:0.85rem; opacity:0.8;">&copy; 2026 Green Gender Foundation. All rights reserved.</p>
+  </div>
+</footer>
+
+
+
+
+
+<!-- ========== JAVASCRIPT ========== -->
+<script>
+  // ---------- Page Navigation (Single Page Application style) ----------
+  const pages = document.querySelectorAll('.page');
+  const navLinks = document.querySelectorAll('nav ul li a');
+  const allPageTriggers = document.querySelectorAll('[data-page]'); // for buttons that also navigate
+
+  function showPage(pageId) {
+    // Hide all pages
+    pages.forEach(p => p.classList.remove('active'));
+    // Show selected page
+    const target = document.getElementById(pageId);
+    if (target) {
+      target.classList.add('active');
+      // Update active nav link
+      navLinks.forEach(link => {
+        link.classList.remove('active-link');
+        if (link.dataset.page === pageId) {
+          link.classList.add('active-link');
+        }
+      });
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  // Attach click events to nav links
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const pageId = link.dataset.page;
+      if (pageId) showPage(pageId);
+      // Close mobile nav after selection
+      const nav = document.getElementById('mainNav');
+      if (nav.classList.contains('open')) {
+        nav.classList.remove('open');
+        document.getElementById('navToggle').setAttribute('aria-expanded', 'false');
+        document.querySelector('#navToggle i').classList.replace('fa-times', 'fa-bars');
+      }
+    });
+  });
+
+  // Attach click events to any element with data-page (like hero buttons)
+  allPageTriggers.forEach(el => {
+    if (!el.closest('nav')) { // avoid double-binding nav links
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const pageId = el.dataset.page;
+        if (pageId) showPage(pageId);
+        // Close mobile nav if open
+        const nav = document.getElementById('mainNav');
+        if (nav.classList.contains('open')) {
+          nav.classList.remove('open');
+          document.getElementById('navToggle').setAttribute('aria-expanded', 'false');
+          document.querySelector('#navToggle i').classList.replace('fa-times', 'fa-bars');
+        }
+      });
+    }
+  });
+
+  // Set initial active page from URL hash (optional)
+  if (window.location.hash) {
+    const hash = window.location.hash.substring(1);
+    if (['home', 'about', 'what-we-do', 'gallery', 'contact'].includes(hash)) {
+      showPage(hash);
+    }
+  }
+
+  // ---------- Mobile Nav Toggle ----------
+  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  navToggle.addEventListener('click', () => {
+    const isOpen = mainNav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+    const icon = navToggle.querySelector('i');
+    if (isOpen) {
+      icon.classList.replace('fa-bars', 'fa-times');
+    } else {
+      icon.classList.replace('fa-times', 'fa-bars');
+    }
+  });
+
+  // Close mobile nav when clicking outside
+  document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+      if (!mainNav.contains(e.target) && !navToggle.contains(e.target)) {
+        if (mainNav.classList.contains('open')) {
+          mainNav.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          navToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+        }
+      }
+    }
+  });
+
+  // Reset mobile nav on window resize to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+      if (mainNav.classList.contains('open')) {
+        mainNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+      }
+    }
+  });
+
+  // ---------- Contact Form Handling (Email Integration Simulation) ----------
+  const contactForm = document.getElementById('contactForm');
+  const formMessage = document.getElementById('formMessage');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get values
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      // Simple validation
+      if (!name || !email || !subject || !message) {
+        formMessage.textContent = 'Please fill in all fields.';
+        formMessage.className = 'form-message error';
+        return;
+      }
+
+      if (!email.includes('@') || !email.includes('.')) {
+        formMessage.textContent = 'Please enter a valid email address.';
+        formMessage.className = 'form-message error';
+        return;
+      }
+
+      // Simulate email sending (in production, this would be an API call)
+      formMessage.textContent = 'Sending your message...';
+      formMessage.className = 'form-message';
+
+      // Simulate an async request
+      setTimeout(() => {
+        // Success response
+        formMessage.textContent = `Thank you, ${name}! Your message has been sent to our team. We'll get back to you at ${email} soon.`;
+        formMessage.className = 'form-message success';
+
+        // Clear form
+        contactForm.reset();
+
+        // Clear message after 6 seconds
+        setTimeout(() => {
+          formMessage.textContent = '';
+          formMessage.className = 'form-message';
+        }, 6000);
+      }, 1200);
+    });
+  }
+
+  // Ensure any hash changes reflect (optional, for SPA feel)
+  window.addEventListener('hashchange', function() {
+    const hash = window.location.hash.substring(1);
+    if (['home', 'about', 'what-we-do', 'gallery', 'contact'].includes(hash)) {
+      showPage(hash);
+    }
+  });
+
+  // Smooth scroll for in-page anchors (none currently, but good practice)
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href !== '#' && href.startsWith('#')) {
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
+
+
+
+// CLIENT'S WHATSAPP DETAILS
+const whatsappNumber = "254716975570";
+
+const defaultMessage =
+    "Hello! I have visited your website and would like to know more about your services.";
+
+
+// GET HTML ELEMENTS
+const whatsappToggle =
+    document.getElementById("whatsapp-toggle");
+
+const whatsappPopup =
+    document.getElementById("whatsapp-popup");
+
+const whatsappClose =
+    document.getElementById("whatsapp-close");
+
+const whatsappLink =
+    document.getElementById("whatsapp-link");
+
+
+// CREATE WHATSAPP LINK
+whatsappLink.href =
+    `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(defaultMessage)}`;
+
+
+// OPEN AND CLOSE POPUP
+function toggleWhatsApp() {
+
+    const isOpen = !whatsappPopup.hidden;
+
+    whatsappPopup.hidden = isOpen;
+
+    whatsappToggle.setAttribute(
+        "aria-expanded",
+        String(!isOpen)
+    );
+}
+
+
+// OPEN BUTTON
+whatsappToggle.addEventListener("click", toggleWhatsApp);
+
+
+// CLOSE BUTTON
+whatsappClose.addEventListener("click", () => {
+
+    whatsappPopup.hidden = true;
+
+    whatsappToggle.setAttribute("aria-expanded", "false");
+
+});
+
+
+// CLOSE WHEN CLICKING OUTSIDE
+document.addEventListener("click", (event) => {
+
+    const clickedInside =
+        event.target.closest(".whatsapp-widget");
+
+    if (!clickedInside) {
+
+        whatsappPopup.hidden = true;
+
+        whatsappToggle.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    }
+
+});
+
+
+// CLOSE USING ESCAPE KEY
+document.addEventListener("keydown", (event) => {
+
+    if (event.key === "Escape") {
+
+        whatsappPopup.hidden = true;
+
+        whatsappToggle.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    }
+
+});
+
+
+
+
+
+</script>
+</body>
+</html>
